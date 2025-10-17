@@ -1,0 +1,109 @@
+.neon-name { 
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+  line-height: 1;
+}
+
+.neon-letter {
+  display: inline-block;
+  font-size: clamp(40px, 8vw, 120px);
+  font-weight: 800;
+  position: relative;
+
+  /* Start filled neon */
+  /* color: var(--neon-cyan);
+  text-shadow:
+    0 0 6px rgba(0, 229, 255, 0.4),
+    0 0 12px rgba(0, 229, 255, 0.3);
+     */
+
+  /* Outline prep */
+  /* Animate the outline */
+  /* animation: drawOutline 1s linear forwards; */
+  /* Hollow at the end */
+  -webkit-text-stroke: 2px transparent;
+
+  opacity: 1;
+  transition: all 0.7s ease;
+  color: rgb(43, 40, 40); 
+    -webkit-text-stroke: 2px var(--neon-cyan);
+    filter: blur(0);
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, 0.6),
+      0 0 20px rgba(255, 0, 179, 0.5);
+    /* animation: draw 1s linear forwards; */
+  
+}
+
+/* Outline animation */
+@keyframes drawOutline {
+  -1% {
+    color: var(--neon-cyan);
+    -webkit-text-stroke: 2px transparent;
+    filter: blur(3px);
+     color: var(--neon-cyan);
+  text-shadow:
+    0 0 6px rgba(0, 229, 255, 0.4),
+    0 0 12px rgba(0, 229, 255, 0.3);
+  }
+  20% {
+    -webkit-text-stroke: 2px var(--neon-magenta);
+  }
+  50% {
+    -webkit-text-stroke: 2px var(--neon-cyan);
+  }
+  80% {
+    -webkit-text-stroke: 2px var(--neon-magenta);
+  }
+  99% {
+    color: rgb(43, 40, 40); /* Hollow at the end */
+    -webkit-text-stroke: 2px var(--neon-cyan);
+    filter: blur(0);
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, 0.6),
+      0 0 20px rgba(255, 0, 179, 0.5);
+  }
+}
+@keyframes draw {
+  0% {stroke-dashoffset: 100%;}
+  100% {stroke-dashoffset: 0%;}
+}
+/* Hover — fill letter again with solid color and keep glowing outline */
+.neon-letter:hover {
+    /* Fill the letter on hover */
+  /* color: var(--black);   */
+  /* -webkit-text-stroke: 2px var(--black); */
+  color: cyan;
+  /* background-color: aqua; */
+  opacity: 1;
+  text-shadow:
+    0 0 12px rgba(0, 229, 255, 0.8),
+    0 0 25px rgba(255, 0, 179, 0.6);
+  transform: scale(1.05);
+  transition: 1s ease;
+
+  /* animation: none; */
+}
+
+/* flicker when hovered */
+.neon-letter:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--neon-cyan), transparent 70%);
+  opacity: 0.15;
+  filter: blur(8px);
+  pointer-events: none;
+  /* animation: flicker 1.2s infinite alternate ease-in-out; */
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+.tagline {
+  margin-top: 18px;
+  color: var(--muted);
+}
